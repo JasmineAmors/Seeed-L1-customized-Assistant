@@ -11,7 +11,7 @@ A Windows tool for finding Seeed products, checking specifications and box conte
 - A **repository** stores application files and instructions. Download from its **Code** page.
 - A **GitHub Project** is a task board, not an installer. Customization projects saved inside this application are separate local records and do not automatically sync with GitHub Projects.
 - **Deployment in this guide** means downloading and running the application on your PC. No server or domain purchase is needed. Uploading to GitHub does not start the app online.
-- This repository starts as **Private**: only authorized accounts can view or download it. A 404 may mean you are signed into the wrong account or have not accepted an invitation.
+- This repository is **Public**: colleagues can view and download it without a GitHub account or invitation. The GitHub Project board has separate permissions, which do not affect application downloads.
 
 ### Step 1: prepare your computer
 
@@ -97,7 +97,7 @@ This repository contains application files and bundled product data. Personal .l
 
 | Symptom | First action |
 | --- | --- |
-| Repository/ZIP link returns 404 | Check the signed-in account and accept the private repository invitation. |
+| Repository/ZIP link returns 404 | Use this guide's repository URL and check that the full address was copied. Public downloads do not require sign-in or an invitation. |
 | Window closes or only says “Press any key” | Run **Start Diagnostics.cmd** and inspect startup-diagnostic.txt. Give the maintainer an error report without credentials. |
 | Python is missing | Install supported 64-bit 3.12/3.13 and retry in a fresh window; newer is not automatically compatible. |
 | Only a heading appears, loading fails, or images are missing | Download/extract the complete ZIP, preserve data/backend/tools, and use the launcher. |
