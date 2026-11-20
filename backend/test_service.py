@@ -90,6 +90,33 @@ class CheckWorkbench(unittest.TestCase):
         self.assertFalse(updates.thread.is_alive())
         return updates.status()
 
+    def test_published_sync_times_are_defaults_for_the_matching_catalogue(self):
+        import hashlib
+
+        metadata = self.root / "data/catalog-sync.json"
+        timestamps = {
+            "lastCheckedAt": "2026-11-20T08:04:54+00:00",
+            "lastAppliedAt": "2026-11-19T08:25:39+00:00",
+        }
+        checksum = hashlib.sha256(self.store.catalog_file.read_bytes()).hexdigest()
+        write(metadata, packed({"catalogSha256": checksum, **timestamps}))
+        clean = Updates(self.store, self.remote).status()
+        for key, value in timestamps.items():
+            self.assertEqual(clean[key], value)
+        self.assertEqual(clean["status"], "idle")
+
+        newer_check = "2026-11-21T00:00:00+00:00"
+        write(self.local / "update-state.json", packed({"status": "idle", "lastCheckedAt": newer_check}))
+        local = Updates(self.store, self.remote).status()
+        self.assertEqual(local["lastCheckedAt"], newer_check)
+        self.assertEqual(local["lastAppliedAt"], timestamps["lastAppliedAt"])
+
+        (self.local / "update-state.json").unlink()
+        write(metadata, packed({"catalogSha256": "0" * 64, **timestamps}))
+        mismatch = Updates(self.store, self.remote).status()
+        for key in timestamps:
+            self.assertEqual(mismatch[key], "2026-11-08")
+
     def test_preview_resume_full_and_selective(self):
         u=Updates(self.store,self.remote)
         self.store.apply("product",{"sku":"A100","name":"Private name"})

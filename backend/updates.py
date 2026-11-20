@@ -177,8 +177,19 @@ class Updates:
         self.state=read_json(self.file,{"status":"idle","action":"","phase":"idle","done":0,"total":0,
              "updatedAt":"","retryAt":"","error":"","warnings":[],"warningCount":0,"remaining":0})
         initial=max((p.get("updated") or "" for p in store.catalog["products"]),default="")
-        self.state.setdefault("lastCheckedAt",initial)
-        self.state.setdefault("lastAppliedAt",initial)
+        sync_fields = ("lastCheckedAt", "lastAppliedAt")
+        published = {}
+        if any(key not in self.state for key in sync_fields):
+            try:
+                metadata = read_json(store.catalog_file.with_name("catalog-sync.json"), {})
+                if isinstance(metadata, dict) and metadata.get("catalogSha256"):
+                    if metadata["catalogSha256"] == digest(store.catalog_file):
+                        published = metadata
+            except (OSError, ValueError):
+                pass
+        for key in sync_fields:
+            timestamp = published.get(key)
+            self.state.setdefault(key, timestamp if isinstance(timestamp, str) and timestamp else initial)
         if self.state["status"]=="running":
             self.set(status="paused",error="INTERRUPTED")
         # Preview rows are disposable. Keep a paused user's work for up to a week.
