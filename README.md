@@ -147,25 +147,6 @@ To finish for the day, close the browser tab. To stop the local service, double-
 | Track items and a custom request | Use the star on a product card. The sidebar favorites list starts collapsed. Select the arrow to open it. In **Customization**, create a project with a title, requirements, labels and one or more eligible SKUs. Eligibility comes from applicable manufacturer evidence or an explicit local confirmation. |
 | Edit a local record or change language | Open **Developer → Product editor** to add a SKU, correct details or replace the main image. Local edits keep priority after a store refresh. For English or Simplified Chinese, use **Developer → Language & AI**. Product names, quoted source text and your own entries keep their original language. |
 
-### What the included catalogue covers
-
-The **9 November 2026** review compared three public sources. The overseas product search returned **4,499 SKUs**, of which **1,776** appeared across 15 Products menu categories. The sitemap and store routing data identified another **22 SKUs**. All 22 returned HTTP 404 when their ordinary product URLs were checked. They remain searchable in the workbench as archived sitemap records. Confirm availability and pricing separately for these products. The combined catalogue has **4,521 distinct SKUs**.
-
-Open **Coverage** to see the review date, public sources and the number of product pages and documents checked, empty, unavailable or excluded. Product descriptions and the ten separate product-page sections have independent counts. The same page lists available fields across all reviews, verified local photos and the sitemap reconciliation. [Open local coverage](http://127.0.0.1:8765/#coverage) · [Official sitemap](https://www.seeedstudio.com/sitemap.xml)
-
-The **9 November 2026** review attempted all **4,479** eligible product-page entries. It verified the SKU and all ten sections for **4,436** entries. Of these, 4,370 had content and 66 had ten empty sections. The other 43 attempts yielded 27 HTTP 404 responses, 11 different SKUs, one redirect to the homepage, and four redirects outside the permitted source. Store access rules or fallback URLs excluded a further 42 entries. The snapshot contains verified local main photos for 4,467 SKUs across 3,888 distinct JPEGs. Names, storefront prices and public catalogue fields remain available where supplied, including for products with no accessible detail page.
-
-Of the 54 records without a local image, 34 had no usable official main image and 20 retained an official image URL whose host’s public crawler rules could not be verified. In **Documents & sources**, these 20 records still link to the original image. A store add-on offer appears separately from documented accessories and expansion interfaces. For example, the R1125-10 has 25 documented entries and two additional store offers. [Open R1125-10 locally](http://127.0.0.1:8765/#product=113991334&tab=accessories)
-
-The same review found **12,939 distinct resource URLs**. Of these, 3,297 are retained as links because of source, type or access restrictions. All **9,642 eligible official URLs** were attempted. Target-content screening finished for **7,290**, and **2,352** remained incomplete. These include 969 protected files, 939 without a usable text layer, 62 partial OCR results, 212 missing files, 150 access denials and 20 other source problems. The team reviewed 187 pages from nine scanned documents with potential quoting information. SKU `110991984`, for example, lists four screws in its store packing list while assembly step 4 uses six. Both sources are linked. [Open the packing-list comparison](http://127.0.0.1:8765/#product=110991984&tab=parts)
-
-In the resulting snapshot, 3,820 SKUs have structured specifications, 2,943 have in-box rows, and 1,234 link to official Wiki material. Of 3,470 SKUs with linked resources, 3,068 have a source that completed screening. Verified documents contributed **2,922 model-scoped source records across 205 SKUs** and 622 distinct host–accessory SKU pairs. The catalogue keeps each source and its scope when a kit revision, assembly instruction or series manual differs from the product page. [Grove kit with 40 linked module SKUs and original worksheet rows](http://127.0.0.1:8765/#product=110020230&tab=parts)
-
-- An empty field means there is no recorded value. The interface distinguishes a checked section with no entry, a section awaiting verification and raw rows that require review. An empty customization field does not establish whether engineering can offer a service.
-- The store’s *Part List* can contain specifications. The workbench displays identifiable attributes and package contents separately. Check the source and whether it applies to the SKU or the family. Some manufacturers list equipment without a quantity. An accessory listing alone does not establish that the accessory ships with the product.
-- Each SKU uses at most one catalogue main image. Identical JPEGs share a file. Wiki pages and PDF manuals open at the publisher. Verified PDF references can land on a specific file page. The store, its stock and the manuals can change after the snapshot.
-- Open **Specifications** to view original model columns, technical details and hardware overview links. **Documents & sources** identifies purchase links in the official English Wiki, the evidence for each document row, and the physical PDF page when available. For example, the EdgeLogix manual lists the 8 GB RAM and 32 GB eMMC configuration for SKU `102110773` on file page 17. [Open that model locally](http://127.0.0.1:8765/#product=102110773&tab=attributes) · [Seeed manual, page 17](https://files.seeedstudio.com/wiki/raspberry-pi/seeed-studio-raspberry-pi-series-catalog-v1.1.pdf#page=17)
-
 ## Import your company reference material
 
 In the full workbench, open **Developer → Internal reference**, enter a local folder and select **Import**. Supported sources are Markdown knowledge files, DOCX change notices, XLSX product lists and Markdown manuals inside ZIP archives. Imported records stay in this installation’s `.local-workbench/internal-knowledge.json`. Keep the original source folder. Refreshing the page or updating the public catalogue reapplies the SKU matches. Changed source files are reread, while failed sources retain their last successfully imported records and show an error.
@@ -182,7 +163,7 @@ In **Developer → Language & AI**, choose DeepSeek or Doubao, supply a model yo
 
 **Sending a message contacts the selected external provider** and may incur charges on that account. Before sending, check the context shown above the chat. A request can include your question, selected product evidence, local product edits, relevant page or filter information, and up to six earlier turns. On a selected customization project it can also include relevant project details and up to 1,000 characters of the current unsaved draft description. Use customer information approved for that provider. Opening the panel, browsing history or switching products reads local data.
 
-Answers identify official sources, local records and project or page context where available. Check those references before making a customer commitment. Completed turns and citations are stored on this PC. A conversation holds up to 150 turns. A saved provider key is protected by Windows DPAPI for the current user. When moving to another PC or Windows account, enter your own key again. [Microsoft’s explanation of DPAPI](https://learn.microsoft.com/en-us/windows/win32/api/dpapi/nf-dpapi-cryptprotectdata)
+Answers identify official sources, local records and project or page context where available. Check those references before making a customer commitment. Completed turns and citations are stored on this PC.
 
 ## Update the store catalogue
 
@@ -192,36 +173,8 @@ Answers identify official sources, local records and project or page context whe
 
 Updates depend on the public store’s page layouts, search interface and available documents. A changed page may leave fields pending. Recheck manufacturer links and PDF pages when a manual changes.
 
-<details>
-<summary>For catalogue maintainers · reproduce a full source review</summary>
 
-Use a separate temporary folder for each dated review. The desktop app and user profile can stay open. Product pages are fetched in sequence under the store’s published rules. A processing stop or HTTP 429 leaves the completed SKU records in that folder. Resume the same step after its retry time. These commands run from the extracted project folder in PowerShell.
-
-```powershell
-$reviewDir = Join-Path $env:TEMP "seeed-public-review"
-$docDir = Join-Path $reviewDir "documents"
-$pythonExe = ".\.venv\Scripts\python.exe"
-& $pythonExe -m backend.bulk_catalog --stage $reviewDir
-& $pythonExe -m backend.bulk_catalog --stage $reviewDir --reconcile
-& $pythonExe -m backend.bulk_catalog --stage $reviewDir --pages
-& $pythonExe -m backend.bulk_catalog --stage $reviewDir --assemble
-& $pythonExe -m backend.bulk_catalog --stage $reviewDir --references
-& $pythonExe -m backend.document_enrichment --catalog "$reviewDir\catalog.js" --links "$reviewDir\document-links.json" --output $docDir --discovered --global-catalog
-& $pythonExe -m backend.document_merge --catalog "$reviewDir\catalog.js" --output $docDir
-& $pythonExe -m backend.catalog_release --stage $reviewDir --documents $docDir --output "$reviewDir\reviewed\catalog.js"
-```
-
-PDF review on the maintainer’s PC requires Poppler’s `pdftotext` or `pypdf`. English Wiki reverse matching uses the separately obtained official Markdown checkout, `backend.wiki_purchases` and `backend.document_wiki`. Use each module’s `--help` for its revision and mapping arguments. The result is staged for inspection. Check the totals, exceptions, sample SKUs and any new JPEGs before distributing a new snapshot. Remove the temporary review once publication and verification finish.
-
-To install your checked result, finish any active update and stop this installation of the assistant first. Run `& $pythonExe -m backend.catalog_release --stage $reviewDir --install-reviewed "$reviewDir\reviewed\catalog.js"`, then restart it. Installation verifies the original catalogue fingerprint, the completion counts and each referenced local photo before replacing the public catalogue. Your personal profile stays in its own folder.
-
-The full document review runs separately from a routine catalogue update in Developer. In `backend.document_enrichment`, `--verify-digests` rechecks earlier documents that lack a file hash. On Windows, `--ocr-scans` takes the full path to Poppler’s `pdftoppm.exe`, and `--ocr-max-pages` limits text recognition per document. The review retains a direct source link and page reference for checked findings.
-
-Maintainers with a signed-in GitHub CLI can optionally pass `--host api.github.com --github-cli` to that document review command. It uses the existing account’s official API quota for verified public Seeed repositories and verifies the file contents against GitHub’s published identifier. Daily workbench use requires neither GitHub CLI nor a GitHub account.
-
-</details>
-
-## Back up, update the app or change PCs
+## Back up
 
 | What to keep | Location inside the extracted folder |
 | --- | --- |
@@ -232,7 +185,6 @@ Maintainers with a signed-in GitHub CLI can optionally pass `--host api.github.c
 
 **For a private backup**, finish running tasks, run `Stop Assistant.cmd`, and copy `.local-workbench` to an approved private backup location. To preserve your exact catalogue as well, copy `data` with it. The backup can contain customer requirements, chats and encrypted credential material. Give colleagues the repository ZIP for installation and keep your personal backup out of shared archives and GitHub.
 
-**To update the application**, download the new ZIP and extract it to a separate folder. Stop the old installation before starting the new one. On the same account, copy the personal items listed in the table from your backup into the matching locations in the new folder before first launch. Use the new installation’s own catalogue. Run `Prepare Data Tools.cmd` in the new folder when you need store updates or image processing, creating that installation's own `.venv`. Check one favorite, project or previous chat before retiring the old copy. Keep your original backup if formats differ between releases. Catalogue updates in Developer do not install new application code.
 
 ## If something goes wrong
 
@@ -242,12 +194,6 @@ Maintainers with a signed-in GitHub CLI can optionally pass `--host api.github.c
 | Opening the HTML shows only a heading or never gets past “Loading” | A standalone HTML file is missing the catalogue and scripts. Right-click the full ZIP → **Extract All**, then use Edge or Chrome to open `index.html` alongside `data` and `search.js` in the extracted folder. If the browser says JavaScript is disabled, contact IT. |
 | Package downloads fail, the directory is unwritable or a company policy blocks startup | Extract the full package into a writable local folder. Give IT the exact launcher message and ask them to verify package access or device policy. Omit customer data and keys from screenshots. |
 | The browser does not open, the port is occupied, or the wrong copy appears | If the launcher says it is ready, open the local address it reports. For a previous installation, run **its own** `Stop Assistant.cmd`, then start the intended copy. If a port error persists, contact IT. |
-| Favorites or projects seem to be missing | Confirm the browser address uses the local port your launcher opened, and that you launched the same extracted folder under the same Windows account. Personal data lives with that installation. |
-| An AI answer or product detail is unavailable | Check the selected provider, model and key. For the product, use its store URL and source links, inspect the coverage status, or request a scoped refresh. |
-
-The catalogue uses public material from the Seeed international store and Seeed Studio Wiki. Product images, trademarks and linked documents remain subject to their respective owners’ terms. Wiki purchase-button links cite the English source revision used for this review. Consult the publisher’s licensing information before redistributing material. [Seeed international store](https://www.seeedstudio.com/) · [Seeed Wiki licensing](https://wiki.seeedstudio.com/License/) · [English Wiki source revision](https://github.com/Seeed-Studio/wiki-documents/tree/c9321cc04d695f7b89ed273908558854fe00ab50/sites/en/docs)
 
 
-## Source acknowledgement
-
-This upload was prepared from the local Seeed-PM-Assistant-main distribution. Its previous README referenced [HKUJasonJiang/Seeed-PM-Assistant](https://github.com/HKUJasonJiang/Seeed-PM-Assistant). Original code and data provenance are retained; these documentation changes do not establish a new software license.
+The catalogue uses public material from the Seeed international store and Seeed Studio Wiki.
